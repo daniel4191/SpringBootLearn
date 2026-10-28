@@ -2,7 +2,13 @@ package kr.swdl.springboot1.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
+
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,4 +36,12 @@ public class Article { // 이거 자체가 그냥 테이블 엔티티의 이름�
         this.content = content;
 
     }
+
+    @CreatedDate // 엔티티가 생성될 때 생성 시간 저장
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate // 엔티티가 수정될 때 수정 시간 저장
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }

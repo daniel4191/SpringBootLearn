@@ -32,7 +32,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth // 인증 인가 설정
                         .requestMatchers(
                                 "/login",
-                                "signup",
+                                "/signup",
                                 "/user"
                         ).permitAll()
                         .anyRequest().authenticated())
